@@ -1,5 +1,7 @@
 package de.provinzial;
 
+import java.util.Arrays;
+
 public class ArrayTest {
 
     public static void main(String[] args) {
@@ -7,6 +9,9 @@ public class ArrayTest {
         int i = gibZahl();
 
         int[] zahlen = gibZahlen();
+        System.out.println(zahlen);
+
+        System.out.println(Arrays.toString(zahlen));
 
     }
 
@@ -17,6 +22,8 @@ public class ArrayTest {
     private static int[] gibZahlen() {
 
         int[] arr = new int[3];
+        //int[] arr = new int[]{1,4,5};
+        //int[] arr = {1,4,5};
         arr[0] = 1;
         arr[1] = 7;
         arr[2] = 8;

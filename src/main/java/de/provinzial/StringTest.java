@@ -1,5 +1,7 @@
 package de.provinzial;
 
+import java.util.Arrays;
+
 public class StringTest {
 
     public static void main(String[] args) {
@@ -20,7 +22,28 @@ public class StringTest {
 
         System.out.printf(TBL, "Tony", "Natasha", "Steve", 2500.9965); // sofortige ausgabe
 
+        String input = "rrruurroollxyz";
 
+        String[] dirs = input.split("");
+        System.out.println(Arrays.toString(dirs));
+
+        for(String dir : dirs) {
+            if(dir.equalsIgnoreCase("r")) {
+                System.out.println("rechts");
+            }
+            else if(dir.equalsIgnoreCase("l")) {
+                System.out.println("links");
+            }
+            else if(dir.equalsIgnoreCase("o")) {
+                System.out.println("oben");
+            }
+            else if(dir.equalsIgnoreCase("u")) {
+                System.out.println("unten");
+            }
+            else {
+                System.out.println("Richtung unbekannt");
+            }
+        }
     }
 
 }

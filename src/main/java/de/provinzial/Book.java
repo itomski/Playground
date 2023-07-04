@@ -1,5 +1,7 @@
 package de.provinzial;
 
+import java.util.Objects;
+
 public class Book {
 
     private static int count; // Alle Book-Objekte teilen sich gemeinsam diese Variable - sie steht im Bauplan
@@ -61,5 +63,18 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return pages == book.pages && Objects.equals(title, book.title) && Objects.equals(description, book.description) && Objects.equals(isbn, book.isbn) && Objects.equals(publisher, book.publisher);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, pages, isbn, publisher);
     }
 }

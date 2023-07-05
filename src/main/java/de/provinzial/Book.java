@@ -2,7 +2,8 @@ package de.provinzial;
 
 import java.util.Objects;
 
-public class Book {
+// Comparable sichert Vergleichbarkeit zu
+public class Book implements Comparable<Book> {
 
     private static int count; // Alle Book-Objekte teilen sich gemeinsam diese Variable - sie steht im Bauplan
 
@@ -53,8 +54,24 @@ public class Book {
         this.description = description;
     }
 
+    public int getNr() {
+        return nr;
+    }
+
     @Override
     public String toString() {
+
+        return new StringBuilder("Book{")
+            .append("nr=").append(nr)
+            .append(", title=").append(title)
+            .append(", description=").append(description)
+            .append(", pages=").append(pages)
+            .append(", isbn=").append(isbn)
+            .append(", publisher=").append(publisher)
+            .append("}")
+            .toString();
+
+        /*
         return "Book{" +
                 "nr=" + nr +
                 ", title='" + title + '\'' +
@@ -63,6 +80,8 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 '}';
+
+         */
     }
 
     @Override
@@ -76,5 +95,11 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(title, description, pages, isbn, publisher);
+    }
+
+    @Override
+    public int compareTo(Book other) { // Natürliche Ordnung
+        //return nr - other.nr;
+        return title.compareTo(other.title);
     }
 }

@@ -1,9 +1,6 @@
 package de.provinzial.jdbc;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +28,8 @@ public class ProductRepository implements Repository<Product> {
                 // Objekte werden in einer Liste gesammelt
                 products.add(create(results));
             }
-
+            return products;
         }
-        return products;
     }
 
     @Override
@@ -43,6 +39,7 @@ public class ProductRepository implements Repository<Product> {
 
     @Override
     public boolean insert(Product obj) throws SQLException {
+
         try(Connection con = ConnectionUtil.get();
             Statement stmt = con.createStatement()) {
 

@@ -31,12 +31,4 @@ public class SqliteTest {
             System.out.println(p.getId() + ", " + p.getName());
         }
     }
-
-
-
-
-
-
-
-
 }

@@ -58,7 +58,7 @@ abstract class Mensch {
     public abstract String stelltSichVor(); // Methode MUISS in den erbenden Klassen eingebaut werden
 }
 
-class Student extends Mensch { // Erbt von Mensch
+class Student extends Mensch implements Comparable<Student> { // Erbt von Mensch
 
     private boolean aktiv;
 
@@ -87,6 +87,11 @@ class Student extends Mensch { // Erbt von Mensch
     @Override
     public String stelltSichVor() {
         return getVorname() + " " + getNachname() + ", " + getMatrikelNr();
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return getVorname().compareTo(other.getVorname());
     }
 }
 

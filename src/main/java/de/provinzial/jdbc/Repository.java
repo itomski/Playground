@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 // Generisches Interface
+// Der generische Typ wird auf Kindklassen von AbstractEntity eingeschränkt
 public interface Repository<T extends AbstractEntity> { // AbstractEntity sichert zu, dass alle Objekte eine ID haben
 
     public List<T> find() throws SQLException;

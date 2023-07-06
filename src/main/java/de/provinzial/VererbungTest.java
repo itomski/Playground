@@ -4,17 +4,19 @@ public class VererbungTest {
 
     public static void main(String[] args) {
 
-        Student s1 = new Student();
+        //Student s1 = new Student();
 
         //Mensch m = new Mensch();
 
         // IS-A
+        /*
         JuraStudent s2 = new JuraStudent();
         Student s3 = new JuraStudent();
         Mensch s4 = new JuraStudent();
         s4.setVorname("Peter");
         s4.setNachname("Parker");
         System.out.println(s4.stelltSichVor());
+        */
 
         Object s5 = new JuraStudent();
 
@@ -31,6 +33,11 @@ abstract class Mensch {
     private String vorname;
 
     private String nachname;
+
+    public Mensch() {
+        super();
+        System.out.println("MENSCH C");
+    }
 
     public String getVorname() {
         return vorname;
@@ -56,6 +63,10 @@ class Student extends Mensch { // Erbt von Mensch
     private boolean aktiv;
 
     private String matrikelNr;
+
+    public Student() {
+        System.out.println("STUDENT C");
+    }
 
     public boolean isAktiv() {
         return aktiv;
@@ -83,6 +94,10 @@ class JuraStudent extends Student {
 
     private String rechtSpez;
 
+    public JuraStudent() {
+        System.out.println("JURASTUDENT C");
+    }
+
     public String getRechtSpez() {
         return rechtSpez;
     }
@@ -90,11 +105,26 @@ class JuraStudent extends Student {
     public void setRechtSpez(String rechtSpez) {
         this.rechtSpez = rechtSpez;
     }
+
+    @Override
+    public String toString() {
+
+        String str = super.toString(); // Ruft die toString-Methode der Elternklasse auf
+        // String str = this.toString(); // Ruft die toString-Methode aus dieser Klasse... auf this kann verzichtet werden
+
+        return "JuraStudent{" +
+                "rechtSpez='" + rechtSpez + '\'' +
+                '}';
+    }
 }
 
 class InformatikStudent extends Student {
 
     private boolean oca;
+
+    public InformatikStudent() {
+        System.out.println("INFORMATIKSTUDENT C");
+    }
 
     public boolean isOca() {
         return oca;

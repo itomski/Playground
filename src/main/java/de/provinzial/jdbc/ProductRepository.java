@@ -34,18 +34,39 @@ public class ProductRepository implements Repository<Product> {
 
     @Override
     public Product find(int id) throws SQLException {
-        return null;
+
+        try(Connection con = ConnectionUtil.get();
+            Statement stmt = con.createStatement();) {
+
+            ResultSet results = stmt.executeQuery("SELECT * FROM " + TABLE + " WHERE id = " + id);
+
+            if(results.next()) { // Es wird nur ein Datensatz erwartet
+                return create(results);
+            }
+            return null; // Besser wäre ein Optional
+        }
     }
 
     @Override
     public boolean insert(Product obj) throws SQLException {
 
-        try(Connection con = ConnectionUtil.get();
-            Statement stmt = con.createStatement()) {
+        final String SQL = "INSERT INTO " + TABLE + " (name, description, price) VALUES(?, ?, ?)";
 
-            // TODO: Gegen SQLInjection absichern
-            final String SQL = "INSERT INTO " + TABLE + " (id, name, description, price) VALUES(null, '%s', '%s', " + obj.getPrice() + ")";
-            return stmt.executeUpdate(String.format(SQL, obj.getName(), obj.getDescription())) > 0;
+        try(Connection con = ConnectionUtil.get();
+            PreparedStatement stmt = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, obj.getName()); // erstes Fragezeichen
+            stmt.setString(2, obj.getDescription());
+            stmt.setDouble(3, obj.getPrice());
+            stmt.execute();
+
+            ResultSet keys = stmt.getGeneratedKeys();
+            if(keys.next()) {
+                obj.setId(keys.getInt(1));
+                return true;
+            }
+
+            return false;
         }
     }
 

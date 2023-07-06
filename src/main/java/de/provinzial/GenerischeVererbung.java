@@ -47,6 +47,13 @@ class ZahlenAnalyse<T extends Number> implements Analyse<T> {
 
     @Override
     public String analysiere(Collection<T> list) {
-        return null;
+        StringBuilder sb = new StringBuilder();
+
+        // Ohne Bound auf Number stehen hier nur die Methoden von Objekt zur Verfügung
+        for(Number i : list) {
+            sb.append(i.doubleValue()).append(", ");
+        }
+
+        return sb.toString();
     }
 }

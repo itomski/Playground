@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products")
+@NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p") // JPQL
 public class Product {
 
     @Id

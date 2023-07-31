@@ -1,9 +1,12 @@
 package de.provinzial;
 
+import net.bytebuddy.asm.Advice;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class TimeTest {
 
@@ -25,6 +28,8 @@ public class TimeTest {
         final DateTimeFormatter FMT_DATE = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         final DateTimeFormatter FMT_TIME = DateTimeFormatter.ofPattern("HH:mm");
         final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+
+        Locale.setDefault(Locale.GERMANY); // Verändert die Systemsprache für das JRE auf deutsch
 
         System.out.println(heute.format(FMT_DATE));
         System.out.println(jetzt.format(FMT_TIME));

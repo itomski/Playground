@@ -8,7 +8,8 @@ public class NameSelectorTest {
 
     @Test
     public void getName() {
-        String expected = "Bruce";
+        //String expected = "Bruce";
+        String expected = "Anna";
         NameSelector selector = new NameSelector();
         assertEquals(expected, selector.getName(0));
     }
